@@ -42,7 +42,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          Text('Wanna hear a funny word?'),
+          Text('Let\'s hear a funny word?'),
           Text(appState.current.asUpperCase),
           ElevatedButton(
               onPressed: () {
