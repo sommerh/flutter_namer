@@ -50,6 +50,12 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
     var pair = appState.current;
+    IconData icon;
+    if (appState.favorites.contains(pair)) {
+      icon = Icons.favorite;
+    } else {
+      icon = Icons.favorite_border;
+    }
 
     return Scaffold(
       body: Center(
@@ -61,11 +67,12 @@ class MyHomePage extends StatelessWidget {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                ElevatedButton(
+                ElevatedButton.icon(
                   onPressed: () {
                     appState.toggleFavorites();
                   },
-                  child: Text('Like'),
+                  icon: Icon(icon, size: 20),
+                  label: Text('Like'),
                 ),
                 SizedBox(width: 10),
                 ElevatedButton(
