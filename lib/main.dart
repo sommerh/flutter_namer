@@ -61,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
         page = GeneratorPage();
         break;
       case 1:
-        page = Placeholder();
+        page = FavoritesPage();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
@@ -173,6 +173,36 @@ class BigCard extends StatelessWidget {
           semanticsLabel: pair.asPascalCase,
         ),
       ),
+    );
+  }
+}
+
+class FavoritesPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+    var favSet = appState.favorites;
+
+    if (favSet.isEmpty) {
+      return Center(
+        child: Text('You have not favorited any words yet!'),
+      );
+    }
+
+    return ListView(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: ListTile(
+            title: Center(child: Text('Favorites')),
+            subtitle: Icon(Icons.favorite),
+          ),
+        ),
+        for (var pair in favSet)
+          Center(
+            child: Text(pair.asLowerCase),
+          ),
+      ],
     );
   }
 }
