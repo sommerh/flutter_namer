@@ -68,12 +68,16 @@ class BigCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
+    var style = theme.textTheme.displayMedium!.copyWith(
+      color: theme.colorScheme.onPrimary,
+    );
 
     return Card(
       color: theme.colorScheme.primary,
+      elevation: 20,
       child: Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: Text(pair.asUpperCase),
+        padding: const EdgeInsets.all(25.0),
+        child: Text(pair.asUpperCase, style: style),
       ),
     );
   }
